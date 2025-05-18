@@ -1,0 +1,21 @@
+furnitures:
+  furniture_id:
+    settings:
+      offset: 0.0#0.0#0.0
+      scale: 1.0#1.0#1.0
+      category: Categoria
+    item:
+      material: BARRIER
+      model-data: 1
+      display-name: '&r&7Furniture'
+      lore: []
+    hit-box:
+      enabled: true
+      offset: 0.0#0.0#0.0
+      width: 1.0
+      height: 1.0
+    color:
+      default: 255#255#255
+      list: []
+    blocks: []
+    seats: []
