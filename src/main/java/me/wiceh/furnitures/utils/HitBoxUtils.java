@@ -1,7 +1,7 @@
 package me.wiceh.furnitures.utils;
 
-import me.wiceh.utils.utils.PersistentDataUtils;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Interaction;
@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class HitBoxUtils {
 
-    public static final String HITBOX_KEY = "hitbox";
+    public static final NamespacedKey HITBOX_KEY = new NamespacedKey("furnitures", "hitbox");
 
     public static Interaction spawnHitbox(Location location, float width, float height) {
         Interaction hitbox = (Interaction) location.getWorld().spawnEntity(location, EntityType.INTERACTION);
@@ -31,15 +31,15 @@ public class HitBoxUtils {
     }
 
     public static void setHitBoxEntity(Interaction hitBox, Entity entity) {
-        PersistentDataUtils.set(hitBox, HITBOX_KEY, PersistentDataType.STRING, entity.getUniqueId().toString());
+        hitBox.getPersistentDataContainer().set(HITBOX_KEY, PersistentDataType.STRING, entity.getUniqueId().toString());
     }
 
     public static boolean isHitBox(Interaction hitBox) {
-        return PersistentDataUtils.get(hitBox, HITBOX_KEY, PersistentDataType.STRING) != null;
+        return hitBox.getPersistentDataContainer().has(HITBOX_KEY, PersistentDataType.STRING);
     }
 
     public static Optional<Entity> getEntityFromHitBox(Interaction hitBox) {
-        String displayUuid = PersistentDataUtils.get(hitBox, HITBOX_KEY, PersistentDataType.STRING);
+        String displayUuid = hitBox.getPersistentDataContainer().get(HITBOX_KEY, PersistentDataType.STRING);
         if (displayUuid == null) return Optional.empty();
 
         Entity entity = hitBox.getWorld().getEntity(UUID.fromString(displayUuid));

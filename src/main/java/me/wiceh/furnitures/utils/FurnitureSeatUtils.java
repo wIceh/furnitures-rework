@@ -1,26 +1,28 @@
 package me.wiceh.furnitures.utils;
 
-import me.wiceh.utils.utils.PersistentDataUtils;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Interaction;
 import org.bukkit.entity.ItemDisplay;
+import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.*;
 
 public class FurnitureSeatUtils {
-    private static final String FURNITURE_SEAT_KEY = "furniture-seat";
+    private static final NamespacedKey FURNITURE_SEAT_KEY = new NamespacedKey("furnitures", "furniture-seat");
 
     public static void setFurnitureSeat(Interaction seatEntity, ItemDisplay display) {
-        PersistentDataUtils.set(seatEntity, FURNITURE_SEAT_KEY, PersistentDataType.STRING, display.getUniqueId().toString());
+        seatEntity.getPersistentDataContainer().set(FURNITURE_SEAT_KEY, PersistentDataType.STRING, display.getUniqueId().toString());
     }
 
     public static boolean isFurnitureSeat(Interaction seatEntity) {
-        return PersistentDataUtils.get(seatEntity, FURNITURE_SEAT_KEY, PersistentDataType.STRING) != null;
+        return seatEntity.getPersistentDataContainer().has(FURNITURE_SEAT_KEY, PersistentDataType.STRING);
     }
 
     public static Optional<UUID> getFurnitureEntityFromSeat(Interaction seatEntity) {
         if (!isFurnitureSeat(seatEntity)) return Optional.empty();
-        return Optional.of(UUID.fromString(Objects.requireNonNull(PersistentDataUtils.get(seatEntity, FURNITURE_SEAT_KEY,
+        PersistentDataContainer pdc = seatEntity.getPersistentDataContainer();
+        return Optional.of(UUID.fromString(Objects.requireNonNull(pdc.get(FURNITURE_SEAT_KEY,
                 PersistentDataType.STRING))));
     }
 

@@ -1,28 +1,37 @@
 package me.wiceh.furnitures.utils;
 
 import me.wiceh.furnitures.objects.Furniture;
-import me.wiceh.utils.utils.PersistentDataUtils;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 public class FurnitureUtils {
-    private static final String FURNITURE_KEY = "furniture";
+    private static final NamespacedKey FURNITURE_KEY = new NamespacedKey("furnitures", "furniture");
 
     public static void setFurnitureEntity(Entity entity, Furniture furniture) {
-        PersistentDataUtils.set(entity, FURNITURE_KEY, PersistentDataType.STRING, furniture.id());
+        entity.getPersistentDataContainer().set(FURNITURE_KEY, PersistentDataType.STRING, furniture.id());
     }
 
     public static void setFurnitureItem(ItemStack itemStack, Furniture furniture) {
-        PersistentDataUtils.set(itemStack, FURNITURE_KEY, PersistentDataType.STRING, furniture.id());
+        itemStack.editMeta(meta -> {
+            PersistentDataContainer pdc = meta.getPersistentDataContainer();
+            pdc.set(FURNITURE_KEY, PersistentDataType.STRING, furniture.id());
+        });
     }
 
     public static String getFurnitureItemKey(ItemStack itemStack) {
-        return PersistentDataUtils.get(itemStack, FURNITURE_KEY, PersistentDataType.STRING);
+        ItemMeta meta = itemStack.getItemMeta();
+        if (meta == null || !itemStack.hasItemMeta()) return null;
+
+        PersistentDataContainer pdc = meta.getPersistentDataContainer();
+        return pdc.get(FURNITURE_KEY, PersistentDataType.STRING);
     }
 
     public static String getFurnitureEntityKey(Entity entity) {
-        return PersistentDataUtils.get(entity, FURNITURE_KEY, PersistentDataType.STRING);
+        return entity.getPersistentDataContainer().get(FURNITURE_KEY, PersistentDataType.STRING);
     }
 
     public static boolean isFurnitureEntity(Entity entity) {

@@ -5,8 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class FurnituresLoader extends JavaPlugin {
     private final FurnituresPlugin plugin;
 
-    public FurnituresLoader(FurnituresPlugin plugin) {
-        this.plugin = plugin;
+    public FurnituresLoader() {
+        this.plugin = new FurnituresPlugin(this);
     }
 
     @Override

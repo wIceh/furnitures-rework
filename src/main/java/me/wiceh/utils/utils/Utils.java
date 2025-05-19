@@ -28,7 +28,7 @@ public class Utils {
     }
 
     public static Component parse(String data) {
-        return parse((Component) SERIALIZER.deserialize(data));
+        return parse(SERIALIZER.deserialize(data));
     }
 
     public static Component parse(Component data) {
