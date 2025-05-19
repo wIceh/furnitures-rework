@@ -1,6 +1,6 @@
 package me.wiceh.furnitures.managers;
 
-import me.wiceh.furnitures.Furnitures;
+import me.wiceh.furnitures.FurnituresPlugin;
 import me.wiceh.furnitures.objects.Furniture;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,8 +13,8 @@ import static me.wiceh.furnitures.utils.ConfigUtils.*;
 public class FurnituresManager {
     private final FileConfiguration config;
 
-    public FurnituresManager(Furnitures plugin) {
-        this.config = plugin.getConfig();
+    public FurnituresManager(FurnituresPlugin plugin) {
+        this.config = plugin.getPlugin().getConfig();
     }
 
     public Set<Furniture> getFurnitures() {

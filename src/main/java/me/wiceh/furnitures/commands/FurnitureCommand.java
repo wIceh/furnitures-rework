@@ -1,7 +1,7 @@
 package me.wiceh.furnitures.commands;
 
 import dev.jorel.commandapi.CommandAPICommand;
-import me.wiceh.furnitures.Furnitures;
+import me.wiceh.furnitures.FurnituresPlugin;
 import me.wiceh.furnitures.commands.subcommands.SearchCommand;
 import me.wiceh.furnitures.inventories.FurnituresInventory;
 import me.wiceh.furnitures.permission.FurnituresPermission;
@@ -9,9 +9,9 @@ import me.wiceh.utils.command.CommandSupplier;
 
 public class FurnitureCommand extends CommandSupplier {
 
-    private final Furnitures plugin;
+    private final FurnituresPlugin plugin;
 
-    public FurnitureCommand(Furnitures plugin) {
+    public FurnitureCommand(FurnituresPlugin plugin) {
         super("furniture");
         this.plugin = plugin;
     }

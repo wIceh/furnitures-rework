@@ -1,6 +1,6 @@
 name: furnitures
 version: '${version}'
-main: me.wiceh.furnitures.Furnitures
+main: me.wiceh.furnitures.FurnituresLoader
 api-version: '1.21'
 authors: [wIceh]
 depends: [CommandAPI]

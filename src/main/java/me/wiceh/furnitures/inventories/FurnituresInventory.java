@@ -4,7 +4,7 @@ import dev.triumphteam.gui.builder.item.ItemBuilder;
 import dev.triumphteam.gui.guis.Gui;
 import dev.triumphteam.gui.guis.GuiItem;
 import dev.triumphteam.gui.guis.PaginatedGui;
-import me.wiceh.furnitures.Furnitures;
+import me.wiceh.furnitures.FurnituresPlugin;
 import me.wiceh.furnitures.objects.Furniture;
 import me.wiceh.utils.utils.Utils;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import java.util.List;
-import java.util.Set;
 import java.util.TreeSet;
 
 import static net.kyori.adventure.text.Component.empty;
@@ -24,9 +23,9 @@ import static net.kyori.adventure.text.Component.text;
 
 public class FurnituresInventory {
 
-    private final Furnitures plugin;
+    private final FurnituresPlugin plugin;
 
-    public FurnituresInventory(Furnitures plugin) {
+    public FurnituresInventory(FurnituresPlugin plugin) {
         this.plugin = plugin;
     }
 

@@ -1,6 +1,6 @@
 package me.wiceh.furnitures.listeners;
 
-import me.wiceh.furnitures.Furnitures;
+import me.wiceh.furnitures.FurnituresPlugin;
 import me.wiceh.furnitures.objects.Furniture;
 import me.wiceh.furnitures.objects.FurnitureHitBox;
 import me.wiceh.furnitures.objects.FurnitureSettings;
@@ -32,9 +32,9 @@ import java.util.Set;
 import java.util.UUID;
 
 public class FurnitureListener implements Listener {
-    private final Furnitures plugin;
+    private final FurnituresPlugin plugin;
 
-    public FurnitureListener(Furnitures plugin) {
+    public FurnitureListener(FurnituresPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -144,16 +144,20 @@ public class FurnitureListener implements Listener {
     }
 
     private void createSeats(ItemDisplay display, Furniture furniture) {
-        List<org.bukkit.util.Vector> seats = furniture.seats();
-        if (seats.isEmpty()) return;
+        List<Vector> seatOffsets = furniture.seats();
+        if (seatOffsets.isEmpty()) return;
 
-        seats.forEach(off -> {
-            Location seatLoc = LocationUtils.rotateOffset(display.getLocation(), off);
+        float baseYaw = display.getLocation().getYaw();
+        seatOffsets.forEach(offset -> {
+            Location seatLoc = LocationUtils.rotateOffset(display.getLocation(), offset);
+            seatLoc.setYaw(baseYaw);
+
             Interaction seat = (Interaction) seatLoc.getWorld().spawnEntity(seatLoc, EntityType.INTERACTION);
             seat.setInteractionWidth(0.5f);
             seat.setInteractionHeight(0.5f);
             seat.setInvulnerable(true);
-            seat.setRotation(seatLoc.getYaw(), 0);
+
+            seat.setRotation(baseYaw, 0);
             FurnitureSeatUtils.setFurnitureSeat(seat, display);
         });
     }

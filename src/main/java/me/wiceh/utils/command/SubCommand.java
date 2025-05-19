@@ -11,7 +11,7 @@ import java.util.UUID;
 
 import static net.kyori.adventure.text.Component.text;
 
-public abstract class SubCommand<T extends JavaPlugin> extends CommandAPICommand {
+public abstract class SubCommand<T> extends CommandAPICommand {
     protected final int coolDown;
     private final Map<UUID, Long> cooldownMap;
     protected T plugin;

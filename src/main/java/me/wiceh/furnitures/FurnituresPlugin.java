@@ -6,18 +6,24 @@ import me.wiceh.furnitures.listeners.FurnitureListener;
 import me.wiceh.furnitures.managers.FurnituresManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Furnitures extends JavaPlugin {
+public final class FurnituresPlugin {
 
-    private FurnituresManager furnituresManager;
+    private final JavaPlugin plugin;
+    private final FurnituresManager furnituresManager;
 
-    @Override
-    public void onEnable() {
-        saveDefaultConfig();
-
+    public FurnituresPlugin(JavaPlugin plugin) {
+        this.plugin = plugin;
         this.furnituresManager = new FurnituresManager(this);
+    }
+
+    public void enable() {
+        plugin.saveDefaultConfig();
 
         registerCommands();
         registerListeners();
+    }
+
+    public void disable() {
     }
 
     private void registerCommands() {
@@ -28,10 +34,14 @@ public final class Furnitures extends JavaPlugin {
     }
 
     private void registerListeners() {
-        getServer().getPluginManager().registerEvents(new FurnitureListener(this), this);
+        plugin.getServer().getPluginManager().registerEvents(new FurnitureListener(this), plugin);
     }
 
     public FurnituresManager getFurnituresManager() {
         return furnituresManager;
+    }
+
+    public JavaPlugin getPlugin() {
+        return plugin;
     }
 }

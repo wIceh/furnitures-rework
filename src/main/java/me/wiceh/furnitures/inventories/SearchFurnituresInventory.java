@@ -4,7 +4,7 @@ import dev.triumphteam.gui.builder.item.ItemBuilder;
 import dev.triumphteam.gui.guis.Gui;
 import dev.triumphteam.gui.guis.GuiItem;
 import dev.triumphteam.gui.guis.PaginatedGui;
-import me.wiceh.furnitures.Furnitures;
+import me.wiceh.furnitures.FurnituresPlugin;
 import me.wiceh.furnitures.objects.Furniture;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -17,10 +17,10 @@ import static net.kyori.adventure.text.Component.text;
 
 public class SearchFurnituresInventory {
 
-    private final Furnitures plugin;
+    private final FurnituresPlugin plugin;
     private final String query;
 
-    public SearchFurnituresInventory(Furnitures plugin, String query) {
+    public SearchFurnituresInventory(FurnituresPlugin plugin, String query) {
         this.plugin = plugin;
         this.query = query;
     }

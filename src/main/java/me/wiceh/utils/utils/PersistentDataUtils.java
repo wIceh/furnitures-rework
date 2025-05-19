@@ -1,7 +1,7 @@
 package me.wiceh.utils.utils;
 
 import com.google.common.collect.Maps;
-import me.wiceh.furnitures.Furnitures;
+import me.wiceh.furnitures.FurnituresPlugin;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.TileState;
 import org.bukkit.inventory.ItemStack;
@@ -109,6 +109,6 @@ public class PersistentDataUtils {
     }
 
     static {
-        PLUGIN = JavaPlugin.getPlugin(Furnitures.class);
+        PLUGIN = JavaPlugin.getPlugin(FurnituresPlugin.class);
     }
 }

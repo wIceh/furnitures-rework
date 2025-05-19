@@ -1,13 +1,13 @@
 package me.wiceh.furnitures.commands.subcommands;
 
 import dev.jorel.commandapi.arguments.StringArgument;
-import me.wiceh.furnitures.Furnitures;
+import me.wiceh.furnitures.FurnituresPlugin;
 import me.wiceh.furnitures.inventories.SearchFurnituresInventory;
 import me.wiceh.furnitures.permission.FurnituresPermission;
 import me.wiceh.utils.command.SubCommand;
 
-public class SearchCommand extends SubCommand<Furnitures> {
-    public SearchCommand(Furnitures plugin) {
+public class SearchCommand extends SubCommand<FurnituresPlugin> {
+    public SearchCommand(FurnituresPlugin plugin) {
         super(plugin, "cerca");
     }
 
